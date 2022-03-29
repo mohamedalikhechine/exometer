@@ -120,7 +120,7 @@ ensure_table() ->
     end.
 
 restart_timers(TTL) ->
-    random:seed(),
+    rand:seed(exs1024s),
     restart_timers(
       ets:select(
         ?TABLE, [{#cache{name = '$1', ttl = '$2', time = '$3', _='_'},

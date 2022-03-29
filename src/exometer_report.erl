@@ -1392,9 +1392,9 @@ report_values(Found, #key{reporter = Reporter, extra = Extra} = Key) ->
 	[[report_value(Reporter, Name, DP, Extra, Val)
 	  || {DP, Val} <- Values] || {Name, Values} <- Found]
     catch
-	error:Reason ->
+	error:Reason:S ->
 	    lager:error("ERROR ~p~nKey = ~p~nTrace: ~p",
-			[Reason, Key, erlang:get_stacktrace()])
+			[Reason, Key, S])
     end.
 
 report_value(Reporter, Metric, DataPoint, Extra, Val) ->
